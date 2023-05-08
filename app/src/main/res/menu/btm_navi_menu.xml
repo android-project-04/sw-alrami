@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/tab_notice"
+        android:enabled="true"
+        android:icon="@drawable/ic_notice"
+        android:title="공지사항"/>
+
+    <item
+        android:id="@+id/tab_job"
+        android:enabled="true"
+        android:icon="@drawable/ic_job"
+        android:title="취업"/>
+
+    <item
+        android:id="@+id/tab_news"
+        android:enabled="true"
+        android:icon="@drawable/ic_news"
+        android:title="뉴스"/>
+
+    <item
+        android:id="@+id/tab_bookmark"
+        android:enabled="true"
+        android:icon="@drawable/ic_bookmark"
+        android:title="북마크"/>
+
+    <item
+        android:id="@+id/tab_mypage"
+        android:enabled="true"
+        android:icon="@drawable/ic_mypage"
+        android:title="마이페이지"/>
+</menu>
