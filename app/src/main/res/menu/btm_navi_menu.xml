@@ -15,9 +15,9 @@
         android:title="취업"/>
 
     <item
-        android:id="@+id/tab_comm"
+        android:id="@+id/tab_community"
         android:enabled="true"
-        android:icon="@drawable/ic_news"
+        android:icon="@drawable/ic_community"
         android:title="커뮤니티"/>
 
     <item

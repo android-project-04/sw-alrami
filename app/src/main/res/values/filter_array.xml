@@ -2,6 +2,6 @@
 <resources>
     <string-array name="filter_array">
         <item>최신순</item>
-        <item>조회수순</item>
+        <item>오래된순</item>
     </string-array>
 </resources>

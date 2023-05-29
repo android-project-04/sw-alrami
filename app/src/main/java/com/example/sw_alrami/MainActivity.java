@@ -44,19 +44,19 @@ public class MainActivity extends AppCompatActivity {
         Fragment fragment = fragmentManager.findFragmentByTag(tag);
         if (fragment == null) {
             if (id == R.id.tab_notice) {
-                fragment = new FragmentPage1();
+                fragment = new Notice_Page();
 
             } else if (id == R.id.tab_job){
 
-                fragment = new FragmentPage2();
-            } else if (id == R.id.tab_news){
+                fragment = new Job_Page();
+            } else if (id == R.id.tab_community){
 
-                fragment = new FragmentPage3();
+                fragment = new Community_Page();
             } else if (id == R.id.tab_bookmark){
 
-                fragment = new FragmentPage4();
+                fragment = new Bookmark_Page();
             }else {
-                fragment = new FragmentPage5();
+                fragment = new My_Page();
             }
 
             fragmentTransaction.add(R.id.content_layout, fragment, tag);

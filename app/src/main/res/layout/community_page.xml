@@ -17,23 +17,27 @@
             android:id="@+id/write_post"
             android:layout_width="120dp"
             android:layout_height="50dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
             android:text="게시글 작성"
             android:textSize="10dp"
             android:textStyle="bold"
             android:drawableLeft="@drawable/message" />
 
 
-        <View
-            android:layout_width="100dp"
-            android:layout_height="match_parent"></View>
+
 
 
         <Spinner
-            android:id="@+id/community_spinner"
+            android:id="@+id/spinner"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            />
+
+        <TextView
+            android:id="@+id/choice"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="선택"
             />
 
 

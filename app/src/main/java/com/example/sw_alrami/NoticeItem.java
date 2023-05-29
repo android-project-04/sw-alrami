@@ -1,6 +1,6 @@
 package com.example.sw_alrami;
 
-public class Notice_Item {
+public class NoticeItem {
     private String image, name;
 
     public String getImage()
@@ -13,10 +13,7 @@ public class Notice_Item {
         this.image = image;
     }
 
-    public String getName()
-    {
-        return name;
-    }
+    public String getName() {return name;}
 
     public void setName(String name)
     {
