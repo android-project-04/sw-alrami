@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);         //메인액티비티
+        setContentView(R.layout.activity_main);
 
         mBottomNV = findViewById(R.id.nav_view);
         mBottomNV.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() { //NavigationItemSelecte
@@ -29,11 +29,11 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-        mBottomNV.setSelectedItemId(R.id.tab_notice);       //첫 탭은 공지사항 탭
+        mBottomNV.setSelectedItemId(R.id.tab_notice);
     }
     private void BottomNavigate(int id) {  //BottomNavigation 페이지 변경
-        String tag = String.valueOf(id);     //id값으로 내비게이션바에서 탭 이동
-        FragmentManager fragmentManager = getSupportFragmentManager();      //fragment_manager: 액티비티 프래그먼트의 중간에서 다리역할
+        String tag = String.valueOf(id);
+        FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
         Fragment currentFragment = fragmentManager.getPrimaryNavigationFragment();
@@ -42,21 +42,21 @@ public class MainActivity extends AppCompatActivity {
         }
 
         Fragment fragment = fragmentManager.findFragmentByTag(tag);
-        if (fragment == null) {                     //네비게이션바 탭
+        if (fragment == null) {
             if (id == R.id.tab_notice) {
-                fragment = new Notice_Page();
+                fragment = new FragmentPage1();
 
             } else if (id == R.id.tab_job){
 
-                fragment = new Job_Page();
-            } else if (id == R.id.tab_comm){
+                fragment = new FragmentPage2();
+            } else if (id == R.id.tab_news){
 
-                fragment = new News_Page();
+                fragment = new FragmentPage3();
             } else if (id == R.id.tab_bookmark){
 
-                fragment = new Bookmark_Page();
+                fragment = new FragmentPage4();
             }else {
-                fragment = new My_Page();
+                fragment = new FragmentPage5();
             }
 
             fragmentTransaction.add(R.id.content_layout, fragment, tag);
