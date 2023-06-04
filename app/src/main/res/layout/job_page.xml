@@ -48,12 +48,13 @@
             android:id="@+id/job_recycler_view"
             android:layout_weight="1"
             android:nestedScrollingEnabled="false"
-            tools:listitem="@layout/row_listview" />
+            tools:listitem="@layout/job_cus_list" />
 
         <ProgressBar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/job_progress_bar" />
+            android:id="@+id/job_progress_bar"
+            android:visibility="gone"/>
 
     </LinearLayout>
 
