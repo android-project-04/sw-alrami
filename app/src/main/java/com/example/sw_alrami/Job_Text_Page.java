@@ -15,8 +15,10 @@ public class Job_Text_Page extends AppCompatActivity {
         setContentView(R.layout.job_text_page);
 
         TextView titleText = findViewById(R.id.jobTitle);
+        TextView mainText = findViewById(R.id.mainText);
 
         Intent intent = getIntent();
         titleText.setText(intent.getStringExtra("titleText"));
+        mainText.setText(intent.getStringExtra("mainText"));
     }
 }
