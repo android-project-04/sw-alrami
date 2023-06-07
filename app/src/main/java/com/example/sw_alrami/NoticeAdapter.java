@@ -60,7 +60,7 @@ public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.ViewHolder
                     int pos = getAdapterPosition();
                     if (pos != RecyclerView.NO_POSITION) {
                         NoticeItem listItem = dataArrayList.get(pos);
-                        String url = listItem.getUrl(); // 가정: NoticeItem 클래스에 URL 정보를 얻는 메서드인 getUrl()이 있다고 가정합니다.
+                        String url = listItem.getUrl();
                         intent.putExtra("url", url);
                     }
                     activity.startActivity(intent);

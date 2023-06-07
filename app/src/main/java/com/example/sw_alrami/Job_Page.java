@@ -38,7 +38,7 @@ public class Job_Page extends Fragment {
     private Button btnWrite;
     private Button btnRefresh;
     //postman에서 authorization 임시로 가져온 값
-    private String authToken = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYmNkMXM0MSIsImF1dGgiOiJBRE1JTiIsImV4cCI6MTY4NjE1ODc3Nn0.LvfPhCaN3Rc26kWaVXATsReov_OWXZMvhK2IhDCbdos";
+    private String authToken = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYmNkMXM0MSIsImF1dGgiOiJBRE1JTiIsImV4cCI6MTY4NjE2NzA2NX0.Tih6Yh0iS_y1GWP3qu3dRSBX_k9NnONDwqGClwSAAWI";
     private String urlStr = "http://ec2-3-39-25-103.ap-northeast-2.compute.amazonaws.com/api/employment-community/cursor";
     private String urlStr2 = "http://ec2-3-39-25-103.ap-northeast-2.compute.amazonaws.com/api/employment-community/old/cursor";
     private int nextIndex;
