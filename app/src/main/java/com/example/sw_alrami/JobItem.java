@@ -4,6 +4,7 @@ public class JobItem {
     String job;
     String date;
     int views;
+    String mainText;
 
     public String getJob() {
         return job;
@@ -28,4 +29,8 @@ public class JobItem {
     public void setViews(int views) {
         this.views = views;
     }
+
+    public String getMainText() { return mainText; }
+
+    public void setMainText(String mainText) { this.mainText = mainText; }
 }
