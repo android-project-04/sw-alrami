@@ -32,7 +32,7 @@
 
 
             <Spinner
-                android:id="@+id/spinner"
+                android:id="@+id/notice_sort_spinner"
                 android:layout_centerHorizontal="true"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"/>
@@ -52,7 +52,7 @@
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view"
+            android:id="@+id/notice_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -60,7 +60,7 @@
             tools:listitem="@layout/notice_cus_list"/>
 
         <ProgressBar
-            android:id="@+id/progress_bar"
+            android:id="@+id/notice_progress_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
