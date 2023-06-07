@@ -46,7 +46,7 @@ public class Job_Page extends Fragment {
     private int page = 1;
     private int limit = 10;
     //postman에서 authorization 임시로 가져온 값
-    String authtoken = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYmNkMXM0MSIsImF1dGgiOiJBRE1JTiIsImV4cCI6MTY4NjEyMzM4OH0.m-qwO09_ne85bZxEZVVQtVmqfDXwdARzQSGnK_IMjPQ";
+    String authtoken = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYmNkMXM0MSIsImF1dGgiOiJBRE1JTiIsImV4cCI6MTY4NjEyNjI2N30.bmZEME-V-OX65YmtAiPQdKGYtmzaC_FhKHK7hEPTpv8";
     String urlStr = "http://ec2-3-39-25-103.ap-northeast-2.compute.amazonaws.com/api/employment-community/cursor";
 
     @Nullable

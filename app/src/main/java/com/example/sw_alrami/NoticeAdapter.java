@@ -55,15 +55,14 @@ public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.ViewHolder
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(activity.getApplicationContext(), Notice_Page.class);
+                    Intent intent = new Intent(activity.getApplicationContext(), Notice_Web_View.class);
 
                     int pos = getAdapterPosition();
                     if (pos != RecyclerView.NO_POSITION) {
                         NoticeItem listItem = dataArrayList.get(pos);
-                        String str = listItem.getTitle();
-                        intent.putExtra("titleText", str);
+                        String url = listItem.getUrl(); // 가정: NoticeItem 클래스에 URL 정보를 얻는 메서드인 getUrl()이 있다고 가정합니다.
+                        intent.putExtra("url", url);
                     }
-
                     activity.startActivity(intent);
                 }
             });
