@@ -40,7 +40,7 @@ public class Notice_Page extends Fragment {
     private int nextIndex;
 
 
-    String authtoken = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYmNkMXM0MSIsImF1dGgiOiJBRE1JTiIsImV4cCI6MTY4NjE2NzA2NX0.Tih6Yh0iS_y1GWP3qu3dRSBX_k9NnONDwqGClwSAAWI";
+    String authtoken = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYmNkMXM0MSIsImF1dGgiOiJBRE1JTiIsImV4cCI6MTY4NjIyODExOH0.E0jrUCOJHq3sSx1AynrSRIM5LbM_ebPkR6JEOeEz3KU";
     String urlStr = "http://ec2-3-39-25-103.ap-northeast-2.compute.amazonaws.com/api/notification/list";
 
     String urlStr2 = "http://ec2-3-39-25-103.ap-northeast-2.compute.amazonaws.com/api/notification/old/list";
@@ -167,6 +167,7 @@ public class Notice_Page extends Fragment {
     public class Task extends AsyncTask<String, Void, String> {
         String str, receiveMsg;
 
+
         @Override
         protected String doInBackground(String... params) {
             URL url = null;
@@ -258,6 +259,7 @@ public class Notice_Page extends Fragment {
                     }
 
                     adapter.notifyDataSetChanged();
+
 
                     nextIndex = postObject.getInt("lastIndex");
 
