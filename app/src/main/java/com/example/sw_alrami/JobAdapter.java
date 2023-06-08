@@ -70,6 +70,8 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
                         intent.putExtra("titleText", str);
                         String str2 = listItem.getMainText();
                         intent.putExtra("mainText", str2);
+                        int id = listItem.getId();
+                        intent.putExtra("id", id);
                     }
 
                     activity.startActivity(intent);
