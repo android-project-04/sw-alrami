@@ -44,8 +44,8 @@ public class Notice_Page extends Fragment {
 
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
-                dataList = response.body();
-                Log.d("Notice_Page", dataList.toString());
+                //dataList = response.body();
+                //Log.d("Notice_Page", dataList.toString());
             }
 
             @Override

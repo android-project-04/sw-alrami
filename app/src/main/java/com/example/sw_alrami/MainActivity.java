@@ -1,6 +1,8 @@
 package com.example.sw_alrami;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -14,17 +16,31 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MainActivity extends AppCompatActivity {
     private BottomNavigationView mBottomNV;
 
+    private Bundle bundle = new Bundle();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent intent = getIntent();
+
+        String accesstoken = intent.getStringExtra("accesstoken");
+        String refreshtoken = intent.getStringExtra("refreshtoken");
+        String authority = intent.getStringExtra("authority");
+
+        Log.d("MainActivity", "gettoken: " + accesstoken);
+
+        bundle.putString("accesstoken", accesstoken);
+        bundle.putString("refreshtoken", refreshtoken);
+        bundle.putString("authority", authority);
+
 
         mBottomNV = findViewById(R.id.nav_view);
         mBottomNV.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() { //NavigationItemSelecte
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 BottomNavigate(menuItem.getItemId());
-
 
                 return true;
             }
@@ -57,7 +73,10 @@ public class MainActivity extends AppCompatActivity {
                 fragment = new Bookmark_Page();
             }else {
                 fragment = new My_Page();
+
             }
+
+            fragment.setArguments(bundle);  //bundle로 묶은 토큰 값들 전달
 
             fragmentTransaction.add(R.id.content_layout, fragment, tag);
         } else {

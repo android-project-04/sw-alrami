@@ -9,22 +9,27 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.IOException;
+import java.util.Date;
+import java.util.Map;
+
+import okhttp3.Interceptor;
+import okhttp3.Request;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 
 public class LoginActivity extends AppCompatActivity {
 
     private EditText et_loginID, et_password;
     private Button btn_login, btn_signup;
-
     private ApiService apiService;
-
-    private SharedPreferences sharedPreferences;
+    private String accesstoken, refreshtoken, authority;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,16 +42,8 @@ public class LoginActivity extends AppCompatActivity {
         btn_login = findViewById(R.id.btn_login);
         btn_signup = findViewById(R.id.btn_signup);
 
-        sharedPreferences = getSharedPreferences("HeaderPrefs", MODE_PRIVATE);
-
-        // Create Retrofit instance
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://ec2-3-39-25-103.ap-northeast-2.compute.amazonaws.com/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
         // Create ApiService instance
-        apiService = retrofit.create(ApiService.class);
+        apiService = ApiClient.getClient().create(ApiService.class);
 
         btn_login.setOnClickListener(view -> {
             // Call login API
@@ -75,23 +72,18 @@ public class LoginActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     // Handle successful login
 
-                    final ResponseToken accessToken = (ResponseToken)getApplication();
-                    accessToken.Init();
+                    accesstoken = response.headers().get("Authorization");
+                    refreshtoken = response.headers().get("REFRESH");
+                    authority = response.headers().get("AUTHORITY");
 
-                    accessToken.setAccessToken(response.headers().get("Authorization"));
-                    Log.d("LoginActivity", "Authorization: " + accessToken.getAccessToken());
-                    //String authorization = response.headers().get("Authorization");
-                    //String refresh = response.headers().get("REFRESH");
-                    //String authority = response.headers().get("AUTHORITY");
-
-                    // Save headers in SharedPreferences
-                    //saveHeaders(authorization, refresh, authority);
-
-                    //Log.d("LoginActivity", "Authorization: " + authorization);
-                    //Log.d("LoginActivity", "REFRESH: " + refresh);
-                    //Log.d("LoginActivity", "AUTHORITY: " + authority);
+                    Log.d("LoginActivity", "Authorization: " + accesstoken);
+                    Log.d("LoginActivity", "REFRESH: " + refreshtoken);
+                    Log.d("LoginActivity", "AUTHORITY: " + authority);
 
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    intent.putExtra("accesstoken", accesstoken);
+                    intent.putExtra("refreshtoken", refreshtoken);
+                    intent.putExtra("authority", authority);
                     startActivity(intent);
                 } else {
                     // Handle unsuccessful login
@@ -105,14 +97,6 @@ public class LoginActivity extends AppCompatActivity {
                 Log.e("LoginActivity", "Login request failed. " + t.getMessage());
             }
         });
-    }
-
-    private void saveHeaders(String authorization, String refresh, String authority) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("Authorization", authorization);
-        editor.putString("REFRESH", refresh);
-        editor.putString("AUTHORITY", authority);
-        editor.apply();
     }
 
     // Define API service interface
