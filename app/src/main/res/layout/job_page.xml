@@ -31,15 +31,11 @@
                 android:text="새로고침"
                 android:layout_marginLeft="10dp" />
 
-            <View
-                android:layout_width = "0dp"
-                android:layout_height = "0dp"
-                android:layout_weight = "1" />
-
             <EditText
                 android:id = "@+id/searchText"
-                android:layout_width = "wrap_content"
+                android:layout_width = "60dp"
                 android:layout_height = "wrap_content"
+                android:layout_marginLeft="10dp"
                 android:hint = "검색" />
 
             <Spinner

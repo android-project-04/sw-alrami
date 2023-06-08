@@ -45,6 +45,11 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
         return dataArrayList.size();
     }
 
+    public void filterList(ArrayList<JobItem> filteredList) {
+        dataArrayList = filteredList;
+        notifyDataSetChanged();
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView jobText;
         TextView dateText;

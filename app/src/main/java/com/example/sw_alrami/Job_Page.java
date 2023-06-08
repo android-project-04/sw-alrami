@@ -3,12 +3,15 @@ package com.example.sw_alrami;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 
@@ -29,16 +32,18 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
-public class Job_Page extends Fragment {
+public class Job_Page extends Fragment implements TextWatcher {
     private NestedScrollView nestedScrollView;
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
     private ArrayList<JobItem> dataArrayList = new ArrayList<>();
+    private ArrayList<JobItem> filteredList = new ArrayList<>();
     private JobAdapter adapter;
     private Button btnWrite;
     private Button btnRefresh;
+    private EditText searchText;
     //postman에서 authorization 임시로 가져온 값
-    private String authToken = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYmNkMXM0MSIsImF1dGgiOiJBRE1JTiIsImV4cCI6MTY4NjIzNzY0OX0.Qs_uHnrO_QCQZuUnak3osZbPP1DZPunkALomPrCwpaM";
+    private String authToken = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYmNkMXM0MSIsImF1dGgiOiJBRE1JTiIsImV4cCI6MTY4NjI0MzcwN30.FDaYAN5LWrC7NVzSKgk_n76f-koFC7ZKsX9jHywqMwE";
     private String urlStr = "http://ec2-3-39-25-103.ap-northeast-2.compute.amazonaws.com/api/employment-community/cursor";
     private String urlStr2 = "http://ec2-3-39-25-103.ap-northeast-2.compute.amazonaws.com/api/employment-community/old/cursor";
     private int nextIndex;
@@ -51,6 +56,8 @@ public class Job_Page extends Fragment {
         nestedScrollView = view.findViewById(R.id.scroll_view);
         recyclerView = view.findViewById(R.id.job_recycler_view);
         progressBar = view.findViewById(R.id.job_progress_bar);
+        searchText = view.findViewById(R.id.searchText);
+        searchText.addTextChangedListener(this);
 
         adapter = new JobAdapter(getActivity(), dataArrayList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -184,6 +191,40 @@ public class Job_Page extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+    }
+
+    @Override
+    public void afterTextChanged(Editable editable) {
+        String text = searchText.getText().toString();
+        searchFilter(text);
+    }
+
+    public void searchFilter(String text) {
+        if (!(text.equals(""))) {
+            filteredList.clear();
+
+            for (int i = 0; i < dataArrayList.size(); i++) {
+                if (dataArrayList.get(i).getJob().toLowerCase().contains(text.toLowerCase())) {
+                    filteredList.add(dataArrayList.get(i));
+                }
+            }
+
+            adapter.filterList(filteredList);
+        }
+        else {
+            filteredList = dataArrayList;
+            adapter.filterList(filteredList);
+        }
     }
 
     public class Task extends AsyncTask<String, Void, String> {
