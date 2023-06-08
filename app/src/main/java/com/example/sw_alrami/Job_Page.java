@@ -38,7 +38,7 @@ public class Job_Page extends Fragment {
     private Button btnWrite;
     private Button btnRefresh;
     //postman에서 authorization 임시로 가져온 값
-    private String authToken = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYmNkMXM0MSIsImF1dGgiOiJBRE1JTiIsImV4cCI6MTY4NjIyODExOH0.E0jrUCOJHq3sSx1AynrSRIM5LbM_ebPkR6JEOeEz3KU";
+    private String authToken = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYmNkMXM0MSIsImF1dGgiOiJBRE1JTiIsImV4cCI6MTY4NjIzNzY0OX0.Qs_uHnrO_QCQZuUnak3osZbPP1DZPunkALomPrCwpaM";
     private String urlStr = "http://ec2-3-39-25-103.ap-northeast-2.compute.amazonaws.com/api/employment-community/cursor";
     private String urlStr2 = "http://ec2-3-39-25-103.ap-northeast-2.compute.amazonaws.com/api/employment-community/old/cursor";
     private int nextIndex;
@@ -222,6 +222,7 @@ public class Job_Page extends Fragment {
                         jobItem.setDate(jsonObject1.getString("createdAt"));;
                         jobItem.setViews(Integer.parseInt(jsonObject1.getString("count")));
                         jobItem.setMainText(jsonObject1.getString("description"));
+                        jobItem.setId(jsonObject1.getInt("id"));
                         dataArrayList.add(jobItem);
                     }
 
@@ -276,6 +277,7 @@ public class Job_Page extends Fragment {
                         jobItem.setDate(jsonObject1.getString("createdAt"));;
                         jobItem.setViews(Integer.parseInt(jsonObject1.getString("count")));
                         jobItem.setMainText(jsonObject1.getString("description"));
+                        jobItem.setId(jsonObject1.getInt("id"));
                         dataArrayList.add(jobItem);
                     }
 
@@ -330,6 +332,7 @@ public class Job_Page extends Fragment {
                         jobItem.setDate(jsonObject1.getString("createdAt"));;
                         jobItem.setViews(Integer.parseInt(jsonObject1.getString("count")));
                         jobItem.setMainText(jsonObject1.getString("description"));
+                        jobItem.setId(jsonObject1.getInt("id"));
                         dataArrayList.add(jobItem);
                     }
 
@@ -384,6 +387,7 @@ public class Job_Page extends Fragment {
                         jobItem.setDate(jsonObject1.getString("createdAt"));;
                         jobItem.setViews(Integer.parseInt(jsonObject1.getString("count")));
                         jobItem.setMainText(jsonObject1.getString("description"));
+                        jobItem.setId(jsonObject1.getInt("id"));
                         dataArrayList.add(jobItem);
                     }
 
