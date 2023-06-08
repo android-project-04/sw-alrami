@@ -16,7 +16,7 @@
             android:layout_marginTop="15dp">
 
             <TextView
-                android:id="@+id/jobTitle"
+                android:id="@+id/communityTitle"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@drawable/edge"
@@ -40,35 +40,13 @@
                 android:lineSpacingExtra="5dp"
                 android:text="글내용" />
 
-            <LinearLayout
-                android:layout_width="400dp"
+            <Button
+                android:id="@+id/fileBtn"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/fileBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="10dp"
-                    android:text="첨부파일" />
-
-                <Button
-                    android:id="@+id/addBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="10dp"
-                    android:text="즐겨찾기 추가" />
-
-                <Button
-                    android:id="@+id/deleteBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="10dp"
-                    android:text="즐겨찾기 삭제" />
-            </LinearLayout>
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
+                android:text="첨부파일" />
 
         </LinearLayout>
 

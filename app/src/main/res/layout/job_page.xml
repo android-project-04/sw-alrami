@@ -24,15 +24,18 @@
                 android:text = "글쓰기"
                 android:layout_marginLeft = "10dp" />
 
-            <View
-                android:layout_width = "0dp"
-                android:layout_height = "0dp"
-                android:layout_weight = "1" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/refreshBtn"
+                android:text="새로고침"
+                android:layout_marginLeft="10dp" />
 
             <EditText
                 android:id = "@+id/searchText"
-                android:layout_width = "wrap_content"
+                android:layout_width = "60dp"
                 android:layout_height = "wrap_content"
+                android:layout_marginLeft="10dp"
                 android:hint = "검색" />
 
             <Spinner
@@ -48,12 +51,13 @@
             android:id="@+id/job_recycler_view"
             android:layout_weight="1"
             android:nestedScrollingEnabled="false"
-            tools:listitem="@layout/row_listview" />
+            tools:listitem="@layout/job_cus_list" />
 
         <ProgressBar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/job_progress_bar" />
+            android:id="@+id/job_progress_bar"
+            android:visibility="gone" />
 
     </LinearLayout>
 

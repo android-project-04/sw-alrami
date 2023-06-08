@@ -1,22 +1,20 @@
 package com.example.sw_alrami;
 
 public class NoticeItem {
-    private String image, name;
+    private String title,url;
 
-    public String getImage()
+    public String getTitle() {return title;}
+
+    public void setTitle(String title)
     {
-        return image;
+        this.title = title;
     }
 
-    public void setImage(String image)
-    {
-        this.image = image;
-    }
 
-    public String getName() {return name;}
+    public String getUrl() {return url;}
 
-    public void setName(String name)
+    public void setUrl(String url)
     {
-        this.name = name;
+        this.url = url;
     }
 }

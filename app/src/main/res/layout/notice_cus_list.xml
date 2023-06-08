@@ -12,17 +12,19 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/dataNoticeTitle"
-            android:layout_width="150dp"
-            android:layout_height="80dp"
-            android:scaleType="centerCrop"/>
+            android:layout_width = "match_parent"
+            android:layout_height = "wrap_content"
+            android:text = "SW 공지사항"
+            android:textSize = "16dp"
+            android:layout_gravity = "center"
+            android:padding = "10dp"
+            android:textColor = "#000000"
+            android:id = "@+id/noticeText"
+            app:drawableStartCompat = "@drawable/ic_baseline_chat_24"
+            app:drawableLeftCompat = "@drawable/ic_baseline_chat_24"
+            android:textStyle = "bold" />
 
-        <TextView
-            android:id="@+id/dataEventTime"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="8dp"
-            android:gravity="center"/>
+
 
     </LinearLayout>
 

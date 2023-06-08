@@ -1,69 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scroll_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-
+    android:gravity="center">
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="4dp">
+        <LinearLayout
+            android:layout_width = "wrap_content"
+            android:layout_height = "wrap_content"
+            android:orientation = "horizontal">
 
-        <Button
-            android:id="@+id/write_post"
-            android:layout_width="120dp"
-            android:layout_height="50dp"
-            android:text="게시글 작성"
-            android:textSize="10dp"
-            android:textStyle="bold"
-            android:drawableLeft="@drawable/message" />
+            <Button
+                android:id = "@+id/writeBtn"
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                android:text = "글쓰기"
+                android:layout_marginLeft = "10dp" />
 
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/refreshBtn"
+                android:text="새로고침"
+                android:layout_marginLeft="10dp" />
 
+            <View
+                android:layout_width = "0dp"
+                android:layout_height = "0dp"
+                android:layout_weight = "1" />
 
+            <EditText
+                android:id = "@+id/searchText"
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                android:hint = "검색" />
 
+            <Spinner
+                android:id = "@+id/community_sortSpinner"
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                android:layout_marginRight = "10dp" />
+        </LinearLayout>
 
-        <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            />
-
-        <TextView
-            android:id="@+id/choice"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="선택"
-            />
-
-
-        <SearchView
-            android:id="@+id/searchView"
+        <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:visibility="visible" />
+            android:layout_height="0dp"
+            android:id="@+id/community_recycler_view"
+            android:layout_weight="1"
+            android:nestedScrollingEnabled="false"
+            tools:listitem="@layout/community_cus_list" />
 
+        <ProgressBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/community_progress_bar"
+            android:visibility="gone"/>
 
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="239dp"
-        android:layout_weight="1"
-        android:nestedScrollingEnabled="false"
-        tools:listitem="@layout/notice_cus_list" />
-
-    <ProgressBar
-        android:id="@+id/progress_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-
-</LinearLayout>
+</androidx.core.widget.NestedScrollView>

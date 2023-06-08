@@ -45,6 +45,11 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
         return dataArrayList.size();
     }
 
+    public void filterList(ArrayList<JobItem> filteredList) {
+        dataArrayList = filteredList;
+        notifyDataSetChanged();
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView jobText;
         TextView dateText;
@@ -68,6 +73,10 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
                         JobItem listItem = dataArrayList.get(pos);
                         String str = listItem.getJob();
                         intent.putExtra("titleText", str);
+                        String str2 = listItem.getMainText();
+                        intent.putExtra("mainText", str2);
+                        int id = listItem.getId();
+                        intent.putExtra("id", id);
                     }
 
                     activity.startActivity(intent);

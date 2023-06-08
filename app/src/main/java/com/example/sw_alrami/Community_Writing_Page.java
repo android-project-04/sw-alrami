@@ -1,5 +1,6 @@
 package com.example.sw_alrami;
 
+
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,21 +20,21 @@ import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class Job_Writing_Page extends AppCompatActivity {
+public class Community_Writing_Page extends AppCompatActivity {
     Button commitBtn;
-    EditText jobTitle;
+    EditText communityTitle;
     EditText mainText;
     private String authToken;
-    private String urlStr = "http://ec2-3-39-25-103.ap-northeast-2.compute.amazonaws.com/api/employment-community";
+    private String urlStr = "http://ec2-3-39-25-103.ap-northeast-2.compute.amazonaws.com/api/community";
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.job_writing_page);
+        setContentView(R.layout.community_writing_page);
 
         authToken = getIntent().getStringExtra("auth");
         commitBtn = findViewById(R.id.commitBtn);
-        jobTitle = findViewById(R.id.jobTitle);
+        communityTitle = findViewById(R.id.communityTitle);
         mainText = findViewById(R.id.mainText);
 
         commitBtn.setOnClickListener(new View.OnClickListener() {
@@ -69,7 +70,7 @@ public class Job_Writing_Page extends AppCompatActivity {
                 conn.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + boundary);
                 conn.setConnectTimeout(1000);
 
-                String titleText = jobTitle.getText().toString();
+                String titleText = communityTitle.getText().toString();
                 String descriptionText = mainText.getText().toString();
                 JSONObject requestCommunity = new JSONObject();
                 requestCommunity.put("title", titleText);

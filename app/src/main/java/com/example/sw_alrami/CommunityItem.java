@@ -1,18 +1,17 @@
 package com.example.sw_alrami;
 
-public class JobItem {
-    String job;
+public class CommunityItem {
+    String community;
     String date;
     int views;
     String mainText;
-    int id;
 
-    public String getJob() {
-        return job;
+    public String getCommunity() {
+        return community;
     }
 
-    public void setJob(String job) {
-        this.job = job;
+    public void setCommunity(String community) {
+        this.community = community;
     }
 
     public String getDate() {
@@ -34,8 +33,4 @@ public class JobItem {
     public String getMainText() { return mainText; }
 
     public void setMainText(String mainText) { this.mainText = mainText; }
-
-    public int getId() { return id; }
-
-    public void setId(int id) { this.id = id; }
 }
