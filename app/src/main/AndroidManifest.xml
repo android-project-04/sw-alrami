@@ -3,6 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -11,8 +15,10 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.Sw_alrami"
-        tools:targetApi="31"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"
+        android:hardwareAccelerated="true"
+        android:requestLegacyExternalStorage="true"
+        tools:targetApi="31">
         <activity
             android:name=".IntroActivity"
             android:exported="true">
@@ -26,8 +32,12 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity
-            android:name=".MainActivity"
+        <activity android:name=".MainActivity"/>
+        <activity android:name=".Notice_Page"/>
+        <activity android:name=".Community_Page"/>
+        <activity android:name=".Job_Writing_Page" android:label="글쓰기"/>
+        <activity android:name=".Job_Text_Page" android:label="내용"/>
+        <activity android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,6 +45,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".SignupActivity"/>
+        <activity android:name=".MemberList"/>
         <activity android:name=".Notice_Page"/>
         <activity android:name=".Community_Page"/>
         <activity android:name=".Job_Writing_Page" android:label="글쓰기"/>
