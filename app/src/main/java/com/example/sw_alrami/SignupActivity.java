@@ -1,6 +1,9 @@
 package com.example.sw_alrami;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -8,20 +11,34 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Multipart;
+import retrofit2.http.POST;
+import retrofit2.http.Part;
 
 public class SignupActivity extends AppCompatActivity {
 
     private EditText et_loginID, et_password, et_nickname, et_studentNumber;
-    private String filePath;
+    private File imageFile = new File("/sdcard/Pictures/IMG_20230528_111505.jpg");
+
+    private String imageFilePath;
     private Button btn_signup, btn_camera;
+
+    private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,94 +53,97 @@ public class SignupActivity extends AppCompatActivity {
         btn_camera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(intent, 1);
             }
         });
 
         btn_signup = findViewById(R.id.btn_signup_ok);
         btn_signup.setOnClickListener(view -> {
-            RequestSignup signup = new RequestSignup();
-            signup.start();
+            signup();
         });
 
     }
 
-    class RequestSignup extends Thread {
-        @Override
-        public void run() {
+    private void signup() {
+        String loginId = et_loginID.getText().toString();
+        String password = et_password.getText().toString();
+        Double studentNumber = Double.parseDouble(et_studentNumber.getText().toString());
+        String nickname = et_nickname.getText().toString();
 
-            try {
-                URL url = new URL("http://ec2-3-39-25-103.ap-northeast-2.compute.amazonaws.com/api/member/signup");
-                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
 
-                conn.setRequestMethod("POST");
-                conn.setRequestProperty("Content-type", "multipart/form-data");
-                conn.setRequestProperty("Accept", "application/json");
-                conn.setDoInput(true);
-                conn.setDoOutput(true);
+        SignupApi signupApi = ApiClient.getClient().create(SignupApi.class);
 
-                String boundary = "*****" + Long.toString(System.currentTimeMillis()) + "*****";
-                conn.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + boundary);
+        RequestBody fileRequestBody = RequestBody.create(MediaType.parse("image/png"), imageFilePath);
 
-                File file = new File(filePath);
-                FileInputStream fileInputStream = new FileInputStream(file);
+        MultipartBody.Part filePart = MultipartBody.Part.createFormData("file", "image.png", fileRequestBody);
 
-                // Start writing the request body
-                DataOutputStream outputStream = new DataOutputStream(conn.getOutputStream());
+        RequestBody requestRequestBody = RequestBody.create(JSON, "{\"loginId\":\"" + loginId + "\",\"password\":\"" + password + "\",\"studentNumber\":" + studentNumber + ",\"nickname\":\"" + nickname + "\"}");
 
 
-                String jsonPayload = "{\"loginId\":\"" + et_loginID.getText().toString() + "\",\"password\":\"" + et_password.getText().toString() +
-                        "\",\"studentNumber\":\"" + Integer.parseInt(et_studentNumber.getText().toString()) + "\",\"nickname\":\"" + et_nickname.getText().toString() + "\"}";
+        // Call login API using Retrofit
+        Call<ResponseBody> call = signupApi.signup(filePart.body(), requestRequestBody);
 
-                Log.d("jsonArray", jsonPayload.toString());
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    // Handle successful login
+                    Log.e("SignupActivity", "response: " + response.code());
 
-                outputStream.writeBytes("--" + boundary + "\r\n");
-                outputStream.writeBytes("Content-Disposition: form-data; name=\"request\"\r\n");
-                outputStream.writeBytes("Content-Type: application/json\r\n\r\n");
-                outputStream.write(jsonPayload.getBytes("UTF-8"));
-                outputStream.writeBytes("\r\n");
+                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                    startActivity(intent);
 
-                // Write the image file
-                outputStream.writeBytes("--" + boundary + "\r\n");
-                outputStream.writeBytes("Content-Disposition: form-data; name=\"file\"; filename=\"" + file.getName() + "\"\r\n");
-                outputStream.writeBytes("Content-Type: image/jpeg\r\n\r\n");
-
-                byte[] buffer = new byte[4096];
-                int bytesRead;
-                while ((bytesRead = fileInputStream.read(buffer)) != -1) {
-                    outputStream.write(buffer, 0, bytesRead);
+                } else {
+                    // Handle unsuccessful login
+                    Log.e("SignupActivity", "request: " + call.toString());
+                    Log.e("SignupActivity", "Signup failed. Response code: " + response.code());
                 }
-
-                outputStream.writeBytes("\r\n");
-
-                // End of multipart/form-data
-                outputStream.writeBytes("--" + boundary + "--\r\n");
-
-                // Clean up resources
-                fileInputStream.close();
-                outputStream.flush();
-                outputStream.close();
-
-                // Get the response from the server
-                int responseCode = conn.getResponseCode();
-                BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                String line;
-                StringBuilder response = new StringBuilder();
-                while ((line = reader.readLine()) != null) {
-                    response.append(line);
-                }
-                reader.close();
-
-                // Print the response
-                System.out.println("Response Code: " + responseCode);
-                System.out.println("Response Message: " + response.toString());
-
-            } catch (IOException e) {
-                e.printStackTrace();
             }
 
-        }
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                // Handle failure
+                Log.e("SignupActivity", "Signup request failed. " + t.getMessage());
+            }
+        });
+    }
 
+    // Define API service interface
+    private interface SignupApi {
+        @Multipart
+        @POST("/api/member/signup")
+        Call<ResponseBody> signup(@Part("file\"; filename=\"image.png\"") RequestBody file,
+                                  @Part("request") RequestBody request);
+    }
+
+    // Define login request model
+    public class SignupRequest {
+
+        private String loginId;
+        private String password;
+        private Number studentNumber;
+        private String nickname;
+
+        public SignupRequest(String loginId, String password, Number studentNumber, String nickname) {
+            this.loginId = loginId;
+            this.password = password;
+            this.studentNumber = studentNumber;
+            this.nickname = nickname;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1 && resultCode == RESULT_OK && data != null) {
+            Uri imageUri = data.getData();
+            imageFilePath = imageUri.getPath();
+        }
     }
 
 }
