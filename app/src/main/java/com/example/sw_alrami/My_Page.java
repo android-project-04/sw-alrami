@@ -23,7 +23,7 @@ import retrofit2.http.Header;
 public class My_Page extends Fragment {
 
     private TextView tvNickname;
-    private Button btnadminpage;
+    private Button btnadminpage, btnlogout;
 
     MypageResponse data;
 
@@ -33,6 +33,12 @@ public class My_Page extends Fragment {
 
         tvNickname = view.findViewById(R.id.nickname);
         btnadminpage = view.findViewById(R.id.btnAdminpage);
+        btnlogout = view.findViewById(R.id.btnLogout);
+
+        btnlogout.setOnClickListener(view1 -> {
+            Intent intent = new Intent(getActivity(), LoginActivity.class);
+            startActivity(intent);
+        });
 
         Bundle bundle = getArguments();
 
