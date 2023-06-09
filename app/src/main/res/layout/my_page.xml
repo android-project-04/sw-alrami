@@ -1,18 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical">
+    android:layout_margin="10dp">
+
+    <ImageView
+        android:id="@+id/profile"
+        android:layout_width="100sp"
+        android:layout_height="100sp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="top"
+        app:srcCompat="@drawable/my" />
 
     <TextView
+        android:id="@+id/nickname"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="50dp"
+        android:layout_toEndOf="@id/profile"
+        android:gravity="center_vertical"
+        android:text="nickname"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/nickname_change"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Page_5"
-        android:textSize="100dp"/>
+        android:layout_marginStart="270dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/button_skyblue"
+        android:gravity="center"
+        android:text="닉네임 변경"
+        android:textSize="15sp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="150dp"
+        android:background="@drawable/button_gray"
+        android:gravity="center"
+        android:text="내가 작성한 글"
+        android:textSize="20sp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnAdminpage"
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="350dp"
+        android:background="@drawable/button_gray"
+        android:gravity="center"
+        android:text="관리자 페이지"
+        android:textSize="20sp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnLogout"
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="420dp"
+        android:background="@drawable/button_gray"
+        android:gravity="center"
+        android:text="로그아웃"
+        android:textSize="20sp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnDel"
+        android:layout_width="70dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="290dp"
+        android:layout_marginTop="520dp"
+        android:background="@drawable/button_gray"
+        android:gravity="center"
+        android:text="회원탈퇴"
+        android:textSize="10sp" />
 
 
+</RelativeLayout>
 
-</LinearLayout>
+
