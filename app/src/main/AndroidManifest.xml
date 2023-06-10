@@ -50,10 +50,6 @@
         </activity>
         <activity android:name=".SignupActivity"/>
         <activity android:name=".MemberList"/>
-        <activity android:name=".Notice_Page"/>
-        <activity android:name=".Community_Page"/>
-        <activity android:name=".Job_Writing_Page" android:label="글쓰기"/>
-        <activity android:name=".Job_Text_Page" android:label="내용"/>
         <activity android:name=".Community_Writing_Page" android:label="글쓰기"/>
         <activity android:name=".Community_Text_Page" android:label="내용"/>
         <activity android:name=".Notice_Web_View"/>

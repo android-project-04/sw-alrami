@@ -43,7 +43,7 @@ public class Job_Page extends Fragment implements TextWatcher {
     private Button btnRefresh;
     private EditText searchText;
     //postman에서 authorization 임시로 가져온 값
-    private String authToken = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYmNkMXM0MSIsImF1dGgiOiJBRE1JTiIsImV4cCI6MTY4NjI0MzcwN30.FDaYAN5LWrC7NVzSKgk_n76f-koFC7ZKsX9jHywqMwE";
+    private String authToken = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYmNkMXM0MSIsImF1dGgiOiJBRE1JTiIsImV4cCI6MTY4NjQxNjI3NX0.38I9aYqpRGof_l5sLHRQqleanlNCwYdDfIhciuqdKO4";
     private String urlStr = "http://ec2-3-39-25-103.ap-northeast-2.compute.amazonaws.com/api/employment-community/cursor";
     private String urlStr2 = "http://ec2-3-39-25-103.ap-northeast-2.compute.amazonaws.com/api/employment-community/old/cursor";
     private int nextIndex;

@@ -40,7 +40,7 @@ public class Notice_Page extends Fragment {
     private int nextIndex;
 
 
-    String authtoken = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYmNkMXM0MSIsImF1dGgiOiJBRE1JTiIsImV4cCI6MTY4NjIyODExOH0.E0jrUCOJHq3sSx1AynrSRIM5LbM_ebPkR6JEOeEz3KU";
+    String authtoken = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYmNkMXM0MSIsImF1dGgiOiJBRE1JTiIsImV4cCI6MTY4NjQxNjI3NX0.38I9aYqpRGof_l5sLHRQqleanlNCwYdDfIhciuqdKO4";
     String urlStr = "http://ec2-3-39-25-103.ap-northeast-2.compute.amazonaws.com/api/notification/list";
 
     String urlStr2 = "http://ec2-3-39-25-103.ap-northeast-2.compute.amazonaws.com/api/notification/old/list";
@@ -105,8 +105,7 @@ public class Notice_Page extends Fragment {
                             }
                         }
                     });
-                }
-                else if(spinnerAdapter.getItem(i).equals("오래된순")){
+                } else if (spinnerAdapter.getItem(i).equals("오래된순")) {
                     dataArrayList.clear();
                     adapter.notifyDataSetChanged();
 
@@ -191,9 +190,7 @@ public class Notice_Page extends Fragment {
                     receiveMsg = builder.toString();
                     JSONObject jsonObject = new JSONObject(receiveMsg);
                     JSONObject postObject = jsonObject.getJSONObject("data");
-
-
-                    JSONArray jsonArray = postObject.getJSONArray("values"); 
+                    JSONArray jsonArray = postObject.getJSONArray("values");
 
 
 
@@ -207,6 +204,8 @@ public class Notice_Page extends Fragment {
                     }
 
                     adapter.notifyDataSetChanged();
+
+                    nextIndex = postObject.getInt("lastIndex");
 
                     reader.close();
                     conn.disconnect();
@@ -246,8 +245,6 @@ public class Notice_Page extends Fragment {
                     JSONObject jsonObject = new JSONObject(receiveMsg);
                     JSONObject postObject = jsonObject.getJSONObject("data");
                     JSONArray jsonArray = postObject.getJSONArray("values");
-
-
 
                     int length = jsonArray.length();
                     for (int i = 0; i < length; i++) {
@@ -299,8 +296,6 @@ public class Notice_Page extends Fragment {
                     receiveMsg = builder.toString();
                     JSONObject jsonObject = new JSONObject(receiveMsg);
                     JSONObject postObject = jsonObject.getJSONObject("data");
-
-
                     JSONArray jsonArray = postObject.getJSONArray("values");
 
 
@@ -315,8 +310,10 @@ public class Notice_Page extends Fragment {
                     }
 
                     adapter.notifyDataSetChanged();
+                    nextIndex=postObject.getInt("lastIndex");
 
                     reader.close();
+                    conn.disconnect();
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -336,6 +333,7 @@ public class Notice_Page extends Fragment {
             try {
                 url = new URL(urlStr2 + "?next=" + nextIndex);
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
                 conn.setRequestProperty("Authorization", "Bearer " + authtoken);
 
                 if (conn.getResponseCode() == conn.HTTP_OK) {
@@ -351,11 +349,7 @@ public class Notice_Page extends Fragment {
                     receiveMsg = builder.toString();
                     JSONObject jsonObject = new JSONObject(receiveMsg);
                     JSONObject postObject = jsonObject.getJSONObject("data");
-
-
                     JSONArray jsonArray = postObject.getJSONArray("values");
-
-
 
                     int length = jsonArray.length();
                     for (int i = 0; i < length; i++) {
@@ -368,7 +362,10 @@ public class Notice_Page extends Fragment {
 
                     adapter.notifyDataSetChanged();
 
+                    nextIndex= postObject.getInt("lastIndex");
+
                     reader.close();
+                    conn.disconnect();
                 }
             } catch (Exception e) {
                 e.printStackTrace();
