@@ -38,7 +38,9 @@ public class Bookmark_Page extends Fragment implements TextWatcher {
     private JobAdapter adapter;
     private Button btnRefresh;
     private EditText searchText;
+
     private String authToken;
+
     private String urlStr = "http://ec2-3-39-25-103.ap-northeast-2.compute.amazonaws.com/api/community-bookmark";
     private int nextIndex;
 

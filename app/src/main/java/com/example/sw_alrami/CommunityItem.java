@@ -6,6 +6,8 @@ public class CommunityItem {
     int views;
     String mainText;
 
+    int id;
+
     public String getCommunity() {
         return community;
     }
@@ -33,4 +35,8 @@ public class CommunityItem {
     public String getMainText() { return mainText; }
 
     public void setMainText(String mainText) { this.mainText = mainText; }
+
+    public int getId() { return id; }
+
+    public void setId(int id) { this.id = id; }
 }

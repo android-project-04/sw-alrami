@@ -3,12 +3,15 @@ package com.example.sw_alrami;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 
@@ -30,17 +33,23 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 
-public class Notice_Page extends Fragment {
+public class Notice_Page extends Fragment implements TextWatcher {
     private NestedScrollView nestedScrollView;
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
     private ArrayList<NoticeItem> dataArrayList = new ArrayList<>();
+
+    private ArrayList<NoticeItem> filteredList = new ArrayList<>();
     private NoticeAdapter adapter;
 
+    private EditText searchText;
+
+    private ArrayList<NoticeItem> originalList = new ArrayList<>();                                     ////////
     private int nextIndex;
 
 
     String authtoken;
+
     String urlStr = "http://ec2-3-39-25-103.ap-northeast-2.compute.amazonaws.com/api/notification/list";
 
     String urlStr2 = "http://ec2-3-39-25-103.ap-northeast-2.compute.amazonaws.com/api/notification/old/list";
@@ -53,6 +62,8 @@ public class Notice_Page extends Fragment {
         nestedScrollView = view.findViewById(R.id.scroll_view);
         recyclerView = view.findViewById(R.id.notice_recycler_view);
         progressBar = view.findViewById(R.id.notice_progress_bar);
+        searchText = view.findViewById(R.id.searchText);
+        searchText.addTextChangedListener(this);
 
         adapter = new NoticeAdapter(getActivity(), dataArrayList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -113,8 +124,7 @@ public class Notice_Page extends Fragment {
                             }
                         }
                     });
-                }
-                else if(spinnerAdapter.getItem(i).equals("오래된순")){
+                } else if (spinnerAdapter.getItem(i).equals("오래된순")) {
                     dataArrayList.clear();
                     adapter.notifyDataSetChanged();
 
@@ -171,6 +181,40 @@ public class Notice_Page extends Fragment {
     }
 
 
+    @Override
+    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+    }
+
+    @Override
+    public void afterTextChanged(Editable editable) {
+        String text = searchText.getText().toString();
+        searchFilter(text);
+    }
+
+    public void searchFilter(String text) {
+   
+        if (!(text.equals(""))) {
+            filteredList.clear();
+
+            for (int i = 0; i < dataArrayList.size(); i++) {
+                if (dataArrayList.get(i).getTitle().toLowerCase().contains(text.toLowerCase())) {
+                    filteredList.add(dataArrayList.get(i));
+                }
+            }
+
+            adapter.filterList(filteredList);
+        }
+        else {
+            filteredList = dataArrayList;
+            adapter.filterList(filteredList);
+        }
+    }
 
     public class Task extends AsyncTask<String, Void, String> {
         String str, receiveMsg;
@@ -199,9 +243,7 @@ public class Notice_Page extends Fragment {
                     receiveMsg = builder.toString();
                     JSONObject jsonObject = new JSONObject(receiveMsg);
                     JSONObject postObject = jsonObject.getJSONObject("data");
-
-
-                    JSONArray jsonArray = postObject.getJSONArray("values"); 
+                    JSONArray jsonArray = postObject.getJSONArray("values");
 
 
 
@@ -215,6 +257,8 @@ public class Notice_Page extends Fragment {
                     }
 
                     adapter.notifyDataSetChanged();
+
+                    nextIndex = postObject.getInt("lastIndex");
 
                     reader.close();
                     conn.disconnect();
@@ -254,8 +298,6 @@ public class Notice_Page extends Fragment {
                     JSONObject jsonObject = new JSONObject(receiveMsg);
                     JSONObject postObject = jsonObject.getJSONObject("data");
                     JSONArray jsonArray = postObject.getJSONArray("values");
-
-
 
                     int length = jsonArray.length();
                     for (int i = 0; i < length; i++) {
@@ -307,8 +349,6 @@ public class Notice_Page extends Fragment {
                     receiveMsg = builder.toString();
                     JSONObject jsonObject = new JSONObject(receiveMsg);
                     JSONObject postObject = jsonObject.getJSONObject("data");
-
-
                     JSONArray jsonArray = postObject.getJSONArray("values");
 
 
@@ -323,8 +363,10 @@ public class Notice_Page extends Fragment {
                     }
 
                     adapter.notifyDataSetChanged();
+                    nextIndex=postObject.getInt("lastIndex");
 
                     reader.close();
+                    conn.disconnect();
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -344,6 +386,7 @@ public class Notice_Page extends Fragment {
             try {
                 url = new URL(urlStr2 + "?next=" + nextIndex);
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
                 conn.setRequestProperty("Authorization", "Bearer " + authtoken);
 
                 if (conn.getResponseCode() == conn.HTTP_OK) {
@@ -359,11 +402,7 @@ public class Notice_Page extends Fragment {
                     receiveMsg = builder.toString();
                     JSONObject jsonObject = new JSONObject(receiveMsg);
                     JSONObject postObject = jsonObject.getJSONObject("data");
-
-
                     JSONArray jsonArray = postObject.getJSONArray("values");
-
-
 
                     int length = jsonArray.length();
                     for (int i = 0; i < length; i++) {
@@ -376,7 +415,10 @@ public class Notice_Page extends Fragment {
 
                     adapter.notifyDataSetChanged();
 
+                    nextIndex= postObject.getInt("lastIndex");
+
                     reader.close();
+                    conn.disconnect();
                 }
             } catch (Exception e) {
                 e.printStackTrace();
