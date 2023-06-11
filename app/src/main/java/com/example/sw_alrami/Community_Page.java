@@ -38,7 +38,7 @@ public class Community_Page extends Fragment {
     private Button btnWrite;
     private Button btnRefresh;
     //postman에서 authorization 임시로 가져온 값
-    private String authToken = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYmNkMXM0MSIsImF1dGgiOiJBRE1JTiIsImV4cCI6MTY4NjIyODExOH0.E0jrUCOJHq3sSx1AynrSRIM5LbM_ebPkR6JEOeEz3KU";
+    private String authToken;
     private String urlStr = "http://ec2-3-39-25-103.ap-northeast-2.compute.amazonaws.com/api/community/cursor";
     private String urlStr2 = "http://ec2-3-39-25-103.ap-northeast-2.compute.amazonaws.com/api/community/old/cursor";
     private int nextIndex;
@@ -55,6 +55,14 @@ public class Community_Page extends Fragment {
         adapter = new CommunityAdapter(getActivity(), dataArrayList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
+
+
+        Bundle bundle = getArguments();
+
+        authToken = bundle.getString("accesstoken");
+        String refreshtoken = bundle.getString("refreshtoken");
+        String authority = bundle.getString("authority");           //access 토큰 가져오기
+
 
         try {
             new Task().execute().get();

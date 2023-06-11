@@ -30,10 +30,7 @@ public class MemberList extends AppCompatActivity {
     private ListView lvmemberlist;
     private ArrayAdapter<String> adapter;
     private List<String> titles;
-
     private String accesstoken, refreshtoken, authority;
-
-    private String approvalUrl = "/api/admin/approval/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

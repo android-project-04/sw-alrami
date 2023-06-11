@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text=" 닉네임 재사용 및 복구 불가"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:background="@drawable/textbox"/>
+
+        <TextView
+            android:id="@+id/nickname_change_info"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="10dp"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:background="@drawable/textbox"/>
+
+        <EditText
+            android:id="@+id/changeNickname"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:padding="10dp"
+            android:drawablePadding="10dp"
+            android:layout_gravity="center"
+            android:hint="바꿀 닉네임"
+            android:inputType="text"/>
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_change_ok"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="500dp"
+        android:layout_marginLeft="220dp"
+        android:text="확인"
+        android:textColor="@color/black"
+        android:background="@drawable/button_skyblue"
+        android:textSize="20sp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_change_cancel"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="500dp"
+        android:layout_marginLeft="55dp"
+        android:text="취소"
+        android:textColor="@color/black"
+        android:background="@drawable/button_gray"
+        android:textSize="20sp"/>
+
+</RelativeLayout>

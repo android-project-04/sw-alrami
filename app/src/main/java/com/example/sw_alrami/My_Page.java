@@ -23,9 +23,7 @@ import retrofit2.http.Header;
 public class My_Page extends Fragment {
 
     private TextView tvNickname;
-    private Button btnadminpage, btnlogout;
-
-    MypageResponse data;
+    private Button btnadminpage, btnlogout, btnnicknamechange;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -34,6 +32,7 @@ public class My_Page extends Fragment {
         tvNickname = view.findViewById(R.id.nickname);
         btnadminpage = view.findViewById(R.id.btnAdminpage);
         btnlogout = view.findViewById(R.id.btnLogout);
+        btnnicknamechange = view.findViewById(R.id.nickname_change);
 
         btnlogout.setOnClickListener(view1 -> {
             Intent intent = new Intent(getActivity(), LoginActivity.class);
@@ -47,9 +46,19 @@ public class My_Page extends Fragment {
             String refreshtoken = bundle.getString("refreshtoken");
             String authority = bundle.getString("authority");
 
-            if (authority != "ADMIN") {
+            if (authority.equals("ADMIN")) {
+                btnadminpage.setVisibility(View.VISIBLE);
+            } else {
                 btnadminpage.setVisibility(View.INVISIBLE); //ADMIN 계정이 아닌경우 버튼 비활성화
             }
+
+            btnnicknamechange.setOnClickListener(view1 -> {
+                Intent intent = new Intent(getActivity(), NicknameChange.class);
+                intent.putExtra("accesstoken", accesstoken);
+                intent.putExtra("refreshtoken", refreshtoken);
+                intent.putExtra("authority", authority);
+                startActivity(intent);
+            });
 
             btnadminpage.setOnClickListener(view1 -> {
                 Intent intent1 = new Intent(getActivity(), MemberList.class);
