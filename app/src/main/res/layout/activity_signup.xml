@@ -11,11 +11,6 @@
         android:layout_marginTop="100dp"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/response_test"
-            android:layout_width="wrap_content"
-            android:layout_height="100dp"/>
-
         <EditText
             android:id="@+id/signup_id"
             android:layout_width="300dp"
@@ -66,12 +61,12 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_camera"
-            android:layout_width="200dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
             android:padding="10dp"
-            android:text="학생증 촬영"
+            android:text="학생증 사진 업로드"
             android:textColor="@color/black"
             android:background="@drawable/button_gray"
             android:textSize="16sp" />
@@ -81,7 +76,7 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="30dp"
             android:padding="10dp"
             android:text="회원가입"
             android:textColor="@color/black"

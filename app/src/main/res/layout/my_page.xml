@@ -38,17 +38,6 @@
         android:textSize="15sp" />
 
     <androidx.appcompat.widget.AppCompatButton
-
-        android:layout_width="330dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="150dp"
-        android:background="@drawable/button_gray"
-        android:gravity="center"
-        android:text="내가 작성한 글"
-        android:textSize="20sp" />
-
-    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnAdminpage"
         android:layout_width="330dp"
         android:layout_height="wrap_content"
