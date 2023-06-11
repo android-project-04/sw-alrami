@@ -38,7 +38,7 @@ public class Community_Page extends Fragment {
     private Button btnWrite;
     private Button btnRefresh;
     //postman에서 authorization 임시로 가져온 값
-    private String authToken = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYmNkMXM0MSIsImF1dGgiOiJBRE1JTiIsImV4cCI6MTY4NjQxNjI3NX0.38I9aYqpRGof_l5sLHRQqleanlNCwYdDfIhciuqdKO4";
+    private String authToken = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYmNkMXM0MSIsImF1dGgiOiJBRE1JTiIsImV4cCI6MTY4NjQ3NDA4N30.OrvkaqunpcKIYL-J5CnEdGv1GzyWNSaYOhWgGmhh7v4";
     private String urlStr = "http://ec2-3-39-25-103.ap-northeast-2.compute.amazonaws.com/api/community/cursor";
     private String urlStr2 = "http://ec2-3-39-25-103.ap-northeast-2.compute.amazonaws.com/api/community/old/cursor";
     private int nextIndex;

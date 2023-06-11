@@ -42,6 +42,10 @@ public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.ViewHolder
     }
 
 
+    public void filterList(ArrayList<NoticeItem>filteredList) {
+        dataArrayList = filteredList;
+        notifyDataSetChanged();
+    }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView noticeText;
