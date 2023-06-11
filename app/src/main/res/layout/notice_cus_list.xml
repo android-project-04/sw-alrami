@@ -15,13 +15,14 @@
             android:layout_width = "match_parent"
             android:layout_height = "wrap_content"
             android:text = "SW 공지사항"
-            android:textSize = "16dp"
+            android:textSize = "18dp"
             android:layout_gravity = "center"
             android:padding = "10dp"
             android:textColor = "#000000"
             android:id = "@+id/noticeText"
-            app:drawableStartCompat = "@drawable/ic_baseline_chat_24"
-            app:drawableLeftCompat = "@drawable/ic_baseline_chat_24"
+
+            android:background="@drawable/recyclerview_round"
+
             android:textStyle = "bold" />
 
 
