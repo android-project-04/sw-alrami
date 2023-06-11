@@ -3,12 +3,15 @@ package com.example.sw_alrami;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 
@@ -29,11 +32,13 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
-public class Community_Page extends Fragment {
+public class Community_Page extends Fragment implements TextWatcher {
     private NestedScrollView nestedScrollView;
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
     private ArrayList<CommunityItem> dataArrayList = new ArrayList<>();
+
+    private ArrayList<CommunityItem> filteredList = new ArrayList<>();
     private CommunityAdapter adapter;
     private Button btnWrite;
     private Button btnRefresh;
@@ -42,7 +47,7 @@ public class Community_Page extends Fragment {
     private String urlStr = "http://ec2-3-39-25-103.ap-northeast-2.compute.amazonaws.com/api/community/cursor";
     private String urlStr2 = "http://ec2-3-39-25-103.ap-northeast-2.compute.amazonaws.com/api/community/old/cursor";
     private int nextIndex;
-
+    private EditText searchText;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -51,6 +56,8 @@ public class Community_Page extends Fragment {
         nestedScrollView = view.findViewById(R.id.scroll_view);
         recyclerView = view.findViewById(R.id.community_recycler_view);
         progressBar = view.findViewById(R.id.community_progress_bar);
+        searchText = view.findViewById(R.id.searchText);
+        searchText.addTextChangedListener(this);
 
         adapter = new CommunityAdapter(getActivity(), dataArrayList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -184,6 +191,40 @@ public class Community_Page extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+    }
+
+    @Override
+    public void afterTextChanged(Editable editable) {
+        String text = searchText.getText().toString();
+        searchFilter(text);
+    }
+
+    public void searchFilter(String text) {
+        if (!(text.equals(""))) {
+            filteredList.clear();
+
+            for (int i = 0; i < dataArrayList.size(); i++) {
+                if (dataArrayList.get(i).getCommunity().toLowerCase().contains(text.toLowerCase())) {
+                    filteredList.add(dataArrayList.get(i));
+                }
+            }
+
+            adapter.filterList(filteredList);
+        }
+        else {
+            filteredList = dataArrayList;
+            adapter.filterList(filteredList);
+        }
     }
 
     public class Task extends AsyncTask<String, Void, String> {
