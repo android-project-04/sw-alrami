@@ -53,6 +53,7 @@
         <activity android:name=".Community_Writing_Page" android:label="글쓰기"/>
         <activity android:name=".Community_Text_Page" android:label="내용"/>
         <activity android:name=".Notice_Web_View"/>
+        <activity android:name=".NicknameChange"/>
     </application>
 
 </manifest>

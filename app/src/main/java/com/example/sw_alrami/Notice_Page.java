@@ -48,7 +48,8 @@ public class Notice_Page extends Fragment implements TextWatcher {
     private int nextIndex;
 
 
-    String authtoken = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYmNkMXM0MSIsImF1dGgiOiJBRE1JTiIsImV4cCI6MTY4NjQ4MDE2Mn0.hf-jUneq0SFjrFGyZxD56NZ9h2Zx91TaFAbDKJGfwMM";
+    String authtoken;
+
     String urlStr = "http://ec2-3-39-25-103.ap-northeast-2.compute.amazonaws.com/api/notification/list";
 
     String urlStr2 = "http://ec2-3-39-25-103.ap-northeast-2.compute.amazonaws.com/api/notification/old/list";
@@ -67,6 +68,14 @@ public class Notice_Page extends Fragment implements TextWatcher {
         adapter = new NoticeAdapter(getActivity(), dataArrayList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
+
+
+        Bundle bundle = getArguments();
+
+        authtoken = bundle.getString("accesstoken");
+        String refreshtoken = bundle.getString("refreshtoken");
+        String authority = bundle.getString("authority");           //access 토큰 가져오기
+
 
         try {
             new Task().execute().get();

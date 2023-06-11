@@ -38,7 +38,9 @@ public class Bookmark_Page extends Fragment implements TextWatcher {
     private JobAdapter adapter;
     private Button btnRefresh;
     private EditText searchText;
-    private String authToken = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYmNkMXM0MSIsImF1dGgiOiJBRE1JTiIsImV4cCI6MTY4NjQ4MDE2Mn0.hf-jUneq0SFjrFGyZxD56NZ9h2Zx91TaFAbDKJGfwMM";
+
+    private String authToken;
+
     private String urlStr = "http://ec2-3-39-25-103.ap-northeast-2.compute.amazonaws.com/api/community-bookmark";
     private int nextIndex;
 
@@ -56,6 +58,14 @@ public class Bookmark_Page extends Fragment implements TextWatcher {
         adapter = new JobAdapter(getActivity(), dataArrayList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
+
+
+        Bundle bundle = getArguments();
+
+        authToken = bundle.getString("accesstoken");
+        String refreshtoken = bundle.getString("refreshtoken");
+        String authority = bundle.getString("authority");           //access 토큰 가져오기
+
 
         try {
             new Task().execute().get();

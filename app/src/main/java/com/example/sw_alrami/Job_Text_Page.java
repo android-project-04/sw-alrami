@@ -21,7 +21,7 @@ import java.util.concurrent.ExecutionException;
 public class Job_Text_Page extends AppCompatActivity {
     int id;
     String urlStr = "http://ec2-3-39-25-103.ap-northeast-2.compute.amazonaws.com/api/community-bookmark";
-    String authToken = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYmNkMXM0MSIsImF1dGgiOiJBRE1JTiIsImV4cCI6MTY4NjIzNzY0OX0.Qs_uHnrO_QCQZuUnak3osZbPP1DZPunkALomPrCwpaM";
+    String authToken;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +29,14 @@ public class Job_Text_Page extends AppCompatActivity {
 
         TextView titleText = findViewById(R.id.jobTitle);
         TextView mainText = findViewById(R.id.mainText);
+
+
+        Intent intent1 = getIntent();
+
+        authToken = intent1.getStringExtra("accesstoken");
+        String refreshtoken = intent1.getStringExtra("refreshtoken");
+        String authority = intent1.getStringExtra("authority");         //access 토큰 가져오기
+
 
         Intent intent = getIntent();
         titleText.setText(intent.getStringExtra("titleText"));
