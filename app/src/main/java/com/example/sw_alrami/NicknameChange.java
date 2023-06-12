@@ -62,12 +62,8 @@ public class NicknameChange extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<NicknamechangeResponse> call, Response<NicknamechangeResponse> response) {
                     if (response.isSuccessful()) {
-                        Log.e("NicknameChange", "Nickname Change success. " + response.body().data.nickname);
-                        Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
-                        intent1.putExtra("accesstoken", accesstoken);
-                        intent1.putExtra("refreshtoken", refreshtoken);
-                        intent1.putExtra("authority", authority);
-                        startActivity(intent1);
+                        Log.e("NicknameChange", "Nickname Change success. " + response.code());
+                        Toast.makeText(getApplicationContext(), "닉네임을 바꾼지 30일이 지나지 않았습니다.", Toast.LENGTH_LONG).show();
                     } else {
                         Log.e("NicknameChange", "Nickname Change failed. " + response.code());
                         Toast.makeText(getApplicationContext(), "닉네임을 바꾼지 30일이 지나지 않았습니다.", Toast.LENGTH_LONG).show();
