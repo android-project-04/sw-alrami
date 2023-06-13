@@ -42,6 +42,8 @@
             android:nestedScrollingEnabled="false"
             tools:listitem="@layout/job_cus_list" />
 
+
+
         <ProgressBar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
