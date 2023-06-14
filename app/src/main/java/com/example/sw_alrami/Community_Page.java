@@ -273,6 +273,7 @@ public class Community_Page extends Fragment implements TextWatcher {
                         communityItem.setDate(jsonObject1.getString("createdAt"));;
                         communityItem.setViews(Integer.parseInt(jsonObject1.getString("count")));
                         communityItem.setMainText(jsonObject1.getString("description"));
+                        communityItem.setId(jsonObject1.getInt("id"));
                         dataArrayList.add(communityItem);
                     }
 
@@ -327,6 +328,7 @@ public class Community_Page extends Fragment implements TextWatcher {
                         communityItem.setDate(jsonObject1.getString("createdAt"));;
                         communityItem.setViews(Integer.parseInt(jsonObject1.getString("count")));
                         communityItem.setMainText(jsonObject1.getString("description"));
+                        communityItem.setId(jsonObject1.getInt("id"));
                         dataArrayList.add(communityItem);
                     }
 
@@ -381,6 +383,7 @@ public class Community_Page extends Fragment implements TextWatcher {
                         communityItem.setDate(jsonObject1.getString("createdAt"));;
                         communityItem.setViews(Integer.parseInt(jsonObject1.getString("count")));
                         communityItem.setMainText(jsonObject1.getString("description"));
+                        communityItem.setId(jsonObject1.getInt("id"));
                         dataArrayList.add(communityItem);
                     }
 
@@ -435,6 +438,7 @@ public class Community_Page extends Fragment implements TextWatcher {
                         communityItem.setDate(jsonObject1.getString("createdAt"));;
                         communityItem.setViews(Integer.parseInt(jsonObject1.getString("count")));
                         communityItem.setMainText(jsonObject1.getString("description"));
+                        communityItem.setId(jsonObject1.getInt("id"));
                         dataArrayList.add(communityItem);
                     }
 
