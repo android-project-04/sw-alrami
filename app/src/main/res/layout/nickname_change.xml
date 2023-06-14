@@ -20,7 +20,7 @@
             android:gravity="center_vertical"
             android:textSize="20dp"
             android:textColor="@color/black"
-            android:background="@drawable/textbox"/>
+            android:background="@drawable/recyclerview_round"/>
 
         <TextView
             android:id="@+id/nickname_change_info"
@@ -31,10 +31,10 @@
             android:layout_marginBottom="10dp"
             android:layout_gravity="center"
             android:gravity="center_vertical"
-            android:textSize="20dp"
+            android:textSize="16dp"
             android:textColor="@color/black"
             android:text="사용하고 계신 닉네임을 변경하시면 본인과 타인 모두 재사용 및 복구가 불가능하오니 신중하게 선택하시기 바랍니다. 또한 닉네임 변경 후에는 30일간 다시 닉네임을 변경할 수 없습니다."
-            android:background="@drawable/textbox"/>
+            android:background="@drawable/recyclerview_round"/>
 
         <EditText
             android:id="@+id/changeNickname"
@@ -58,7 +58,7 @@
         android:layout_marginLeft="220dp"
         android:text="확인"
         android:textColor="@color/black"
-        android:background="@drawable/button_skyblue"
+        android:background="@drawable/button_purple"
         android:textSize="20sp" />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -69,7 +69,7 @@
         android:layout_marginLeft="55dp"
         android:text="취소"
         android:textColor="@color/black"
-        android:background="@drawable/button_gray"
+        android:background="@drawable/recyclerview_round"
         android:textSize="20sp"/>
 
 </RelativeLayout>

@@ -44,30 +44,19 @@
             android:padding="10dp"
             android:text="로그인"
             android:textColor="@color/black"
-            android:background="@drawable/button_skyblue"
+            android:background="@drawable/button_purple"
             android:textSize="20sp" />
-
-        <CheckBox
-            android:id="@+id/login_check"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:padding="10dp"
-            android:layout_gravity="center"
-            android:drawablePadding="10dp"
-            android:text="로그인 상태 유지"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_signup"
-            android:layout_width="130dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:layout_marginLeft="55dp"
             android:text="회원가입"
             android:textColor="@color/black"
-            android:background="@drawable/button_gray"
-            android:textSize="14sp"/>
+            android:background="@drawable/recyclerview_round"
+            android:textSize="20sp"/>
 
     </LinearLayout>
 

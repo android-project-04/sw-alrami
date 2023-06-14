@@ -68,7 +68,7 @@
             android:padding="10dp"
             android:text="학생증 사진 업로드"
             android:textColor="@color/black"
-            android:background="@drawable/button_gray"
+            android:background="@drawable/recyclerview_round"
             android:textSize="16sp" />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -80,7 +80,7 @@
             android:padding="10dp"
             android:text="회원가입"
             android:textColor="@color/black"
-            android:background="@drawable/button_skyblue"
+            android:background="@drawable/button_purple"
             android:textSize="20sp"/>
 
     </LinearLayout>
